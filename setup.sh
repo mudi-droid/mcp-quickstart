@@ -340,8 +340,11 @@ Done. From ${TARGET}:
   Only the root Taskfile loads .env. Running these from dr_mcp/ starts a server with
   no credentials and 0 tools.
 
-  pulumi login --local         # once
   task deploy                  # deploy it  -- do NOT pipe or redirect this command
+
+  On a laptop, log in to a local Pulumi backend once first:  pulumi login --local
+  In a Codespace do NOT: PULUMI_BACKEND_URL is already set to ~/storage (the volume
+  that persists). `pulumi login --local` repoints it at ~, which does not.
 
 task dev also starts Build Studio for you, and stops it with the server:
 

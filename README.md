@@ -63,9 +63,19 @@ Put your choice in `MODEL=` at the bottom of `.env`.
 Deploy it into DataRobot:
 
 ```bash
-pulumi login --local         # once; keeps Pulumi state local
 task deploy                  # do not pipe or redirect this command
 ```
+
+On a **laptop**, log in to a local Pulumi backend once first:
+
+```bash
+pulumi login --local
+```
+
+⚠ **Not in a Codespace.** `PULUMI_BACKEND_URL` is already set there to `~/storage`, the
+volume that persists between sessions. `pulumi login --local` repoints it at `~`, which does
+not — so stack state can disappear and `task destroy` will not find what you deployed. Check
+with `pulumi whoami --verbose`; restore with `pulumi login file://~/storage`.
 
 ## Configuring it
 
@@ -90,6 +100,7 @@ documents them. `dr xp --help` has the full list.
 | `No Taskfile found` | You are above the repo. `cd datarobot-mcp-template` first. |
 | `task test-interactive` does not exist | From the root it is namespaced: `task dr_mcp:test-interactive`. |
 | `task deploy` will not pick a stack | It was piped or redirected. Run it plainly. |
+| Pulumi warns about `PULUMI_BACKEND_URL` | You ran `pulumi login --local` in a Codespace. See above. |
 | `'model' is required` | No `MODEL` set. Uncomment one at the bottom of `.env`. |
 | `dr` behaves oddly | A second `dr` on your PATH. Check with `which -a dr`. |
 
