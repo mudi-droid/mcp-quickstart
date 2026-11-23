@@ -1,0 +1,9 @@
+# The template this script clones. Never commit it.
+datarobot-mcp-template/
+
+# Never commit credentials.
+.env
+.env.*
+!.env.template
+
+.DS_Store
