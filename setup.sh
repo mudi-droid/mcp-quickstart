@@ -343,8 +343,8 @@ Done. From ${TARGET}:
   task deploy                  # deploy it  -- do NOT pipe or redirect this command
 
   On a laptop, log in to a local Pulumi backend once first:  pulumi login --local
-  In a Codespace do NOT: PULUMI_BACKEND_URL is already set to ~/storage (the volume
-  that persists). `pulumi login --local` repoints it at ~, which does not.
+  Not needed in a Codespace: PULUMI_BACKEND_URL is already set to ~/storage. Running
+  it there just prints a conflict warning; the environment variable still wins.
 
 task dev also starts Build Studio for you, and stops it with the server:
 

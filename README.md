@@ -72,10 +72,10 @@ On a **laptop**, log in to a local Pulumi backend once first:
 pulumi login --local
 ```
 
-⚠ **Not in a Codespace.** `PULUMI_BACKEND_URL` is already set there to `~/storage`, the
-volume that persists between sessions. `pulumi login --local` repoints it at `~`, which does
-not — so stack state can disappear and `task destroy` will not find what you deployed. Check
-with `pulumi whoami --verbose`; restore with `pulumi login file://~/storage`.
+⚠ **Not needed in a Codespace.** `PULUMI_BACKEND_URL` is already set there to `~/storage`,
+the volume that persists between sessions. Running `pulumi login --local` anyway prints a
+conflict warning; the environment variable still wins, so state stays where it should.
+Confirm with `pulumi whoami --verbose` — the Backend URL should read `file://~/storage/`.
 
 ## Configuring it
 
